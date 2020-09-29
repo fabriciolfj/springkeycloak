@@ -1,0 +1,10 @@
+server:
+  port: 9090
+
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/auth/realms/appsdeveloperblog #public keys e validar o token, discovery do authorization server
+          jwk-set-uri: http://localhost:8080/auth/realms/appsdeveloperblog/protocol/openid-connect/certs #endpoint para acesso a chave publica
