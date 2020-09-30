@@ -12,6 +12,6 @@
 - Authority ficam armazenados em Collection<GrantedAuthority>
 - Nivel de segurança na chamada do metodo (precisa anotar a aplicação com @EnableGlobalMethodSecurity e @EnableWebSecurity): 
     - Secured -> Tem que possuir tal ROLE para executar a class ou método. Anotação indicada para classe.Exemplo: @Secured("ROLE_developer")
-    - PreAuthorize -> Indicado para consulta, verifica depois que o método for chamado se o usuário possui permissão.
-    - PostAuthorize -> indicado para escrita, valida antes da chamada do método se o usuário possui a permissão
+    - PreAuthorize -> Indicado para escrita, verifica depois que o método for chamado se o usuário possui permissão.
+    - PostAuthorize -> indicado para consulta, valida antes da chamada do método se o usuário possui a permissão
     - Existem algumas expressões regulares que também podem ser utilizadas: @PreAuthorize("hasRole('ADMIN') or returnObject.userId == principal.userId")
