@@ -10,8 +10,8 @@
 - Padrão de criação de um Role: ROLE_ADMIN, ROLE_USER e etc.
 - Uso de um role: hasRole("ADMIN"), hasAuthority("ROLE_ADMIN")
 - Authority ficam armazenados em Collection<GrantedAuthority>
-- Nivel de segurança na chamada do metodo (precisa anotar a aplicação com @EnableGlobalMethodSecurity e @EnableWebSecurity): 
+- Nivel de segurança na chamada do metodo (precisa anotar a aplicação com @EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true) e @EnableWebSecurity): 
     - Secured -> Tem que possuir tal ROLE para executar a class ou método. Anotação indicada para classe.Exemplo: @Secured("ROLE_developer")
-    - PreAuthorize -> Indicado para escrita, verifica depois que o método for chamado se o usuário possui permissão.
+    - PreAuthorize -> Indicado para escrita, verifica depois que o método for chamado se o usuário possui permissão. @PostAuthorize("hasRole('ROLE_developer')")
     - PostAuthorize -> indicado para consulta, valida antes da chamada do método se o usuário possui a permissão
     - Existem algumas expressões regulares que também podem ser utilizadas: @PreAuthorize("hasRole('ADMIN') or returnObject.userId == principal.userId")
