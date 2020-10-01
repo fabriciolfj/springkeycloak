@@ -1,7 +1,10 @@
 package com.github.fabriciolfj.springoauth.controller;
 
 import com.github.fabriciolfj.springoauth.response.User;
+import com.netflix.discovery.converters.Auto;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -18,11 +21,14 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class UsersController {
 
+    @Autowired
+    private Environment env;
+
     @PostAuthorize("hasAuthority('ROLE_developer')")
     @GetMapping("/status/check")
     public String status() {
         log.info("Executou");
-        return "Working...";
+        return "Working..." + env.getProperty("local.server.port");
     }
 
     @PreAuthorize("hasAuthority('ROLE_developer') or #id == #jwt.subject")
